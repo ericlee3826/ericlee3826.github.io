@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="rectanglearea"></p>
+    <p id="perimeter"></p>
+    <script>
+            var length=prompt("What is the length?");
+            var width=prompt("What is the width?");
+            var perimeter=(parseInt(length)+parseInt(width))*2;
+            var area=parseInt(length)*parseInt(width);
+        
+            document.getElementById('rectanglearea').innerHTML=area;
+            document.getElementById('perimeter').innerHTML=perimeter;
+        
+        </script>
+</body>
+</html>
