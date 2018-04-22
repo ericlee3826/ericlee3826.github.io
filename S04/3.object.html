@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var myCar={
+            name: "Civic",
+            maker: "Honda",
+            color: "Black",
+            wheels: 4,
+            weight: 2 + " Tons"
+        }
+
+        var person={
+            color: "Black",
+            height: 2 +" Feet",
+            weight: 500 + " Pounds",
+
+            getcolorandheight: function(){
+                return this.color + " "+ this.height;
+            }
+
+        }
+        console.log(person.getcolorandheight());
+
+        
+        console.log(person.color);
+        console.log(person["color"]);
+        console.log(person.height);
+        console.log(person["height"]);
+        console.log(person.weight);
+        console.log(person["weight"]);
+    </script>
+</body>
+</html>
