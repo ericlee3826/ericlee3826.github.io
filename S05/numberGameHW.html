@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number Game</title>
+</head>
+<body>
+    <h1>Number Guessing Game</h1> <br>
+    <h2>We have selected a random number between 1 to 10</h2> <br>
+    <label for="GuessInput">Enter a Guess: </label>
+    <input id="GuessInput" type="text">
+    <button id="CheckAnswer">Check</button> 
+    <button id="btnRestart">Restart</button> <br>
+    <p id="demo">New Game!</p> <br>
+    <label for="totaltries">Total Tries Left: </label>
+    <p id="totaltries">5</p> <br>
+    <label for="prevGuess">Previous Guess: </label>
+    <p id="prevGuess"></p>
+    
+    <script>
+        var randomNumber=Math.floor((Math.random()*10)+1);
+        var guess=document.querySelector("#GuessInput");
+        var btnRestart=document.querySelector("#btnRestart");
+        
+        function PrevGuessFunction(){
+            document.querySelector("#prevGuess").innerHTML=guess.value;
+        }
+        
+        function GuessFunction (){
+
+        
+        if (parseInt(guess.value)>randomNumber) {
+            document.querySelector("#demo").innerHTML="Big";
+        }
+        if (parseInt(guess.value)<randomNumber) {
+            document.querySelector("#demo").innerHTML="Small";
+        } else {
+            document.querySelector("#demo").innerHTML="Great!";
+        }
+        }
+        var leftTries=5;
+        
+        function sumFunction(){
+            leftTries--;
+            if (leftTries==0) {
+                document.querySelector("#totaltries").innerHTML=0;
+                document.querySelector("#demo").innerHTML="Game Over";
+                leftTries++;
+            }
+            else{
+                document.querySelector("#totaltries").innerHTML=leftTries;
+            }
+            
+        }
+        function Restart(){
+            var random=Math.floor(Math.random()*10+1);
+            randomNumber=random;
+            leftTries=5;
+            document.querySelector("#totaltries").innerHTML=leftTries;
+            document.querySelector("#demo").innerHTML="New Game!"
+        }
+        var btnCheckAnswer=document.querySelector("#CheckAnswer");
+        
+        btnCheckAnswer.addEventListener('click', GuessFunction);
+        btnCheckAnswer.addEventListener('click', sumFunction);
+        btnCheckAnswer.addEventListener('click', PrevGuessFunction);
+        btnRestart.addEventListener('click', Restart);
+
+    </script>
+</body>
+</html>

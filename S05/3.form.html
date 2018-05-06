@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <label for="txtFirstName">Please enter your name</label> <br>
+    <input id="txtFirstName" type="text">
+    
+    <button id="btnSubmit">Check</button>
+
+    <p id="demo"></p>
+
+    <script>
+        function display(){
+            var txtFirstName=document.querySelector("#txtFirstName");
+            alert(txtFirstName.value);
+        
+        }
+        var btnSubmit=document.querySelector("#btnSubmit");
+        btnSubmit.addEventListener('click', display);
+
+    </script>
+</body>
+</html>

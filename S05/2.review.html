@@ -9,11 +9,14 @@
 <body>
     <p id="demo"></p>
 
-    <button onclick="helloworld()">Hello World</button>
+    <button id="btnMyButton">Hello World</button>
     <script>
         function helloworld(){
             document.getElementById("demo").innerHTML="Hello World";
         }
+            var btn=document.querySelector("#btnMyButton");
+            btn.addEventListener('click', helloworld);
+
     </script>
 </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="demo"></p>
+    <label for="fn">First Number</label>
+    <input id="fn" type="text">
+    <br>
+    <label for="sn">Second Number</label>
+    <input id="sn" type="text">
+    <br>
+    <button id="checksum">Check</button>
+
+    <script>
+        var btnchecksum = document.querySelector("#checksum");
+        function myFunction() {
+            var firstInteger = document.querySelector("#fn");
+            var secondInteger = document.querySelector("#sn");
+            var sum = parseInt(firstInteger.value) + parseInt(secondInteger.value);
+            document.querySelector("demo").innerHTML=sum;
+        }
+        btnchecksum.addEventListener('click', myFunction);
+    </script>
+</body>
+
+</html>

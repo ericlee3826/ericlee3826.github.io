@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Number Guessing Game</h1>
+    <h3>We have selected a number between 1 and 10.</h3>
+    <label for="guessinput">Enter a Guess: </label>
+    <input id="guessinput" type="text">
+    <button id="btnGuess">Check</button>
+    <p id="demo"></p>
+    <p id="sum">Total Tries</p>
+    <script>
+        var randomnumber=Math.floor(Math.random()*10+1);
+
+        var btnguess=document.querySelector("#btnGuess");
+        var guess=document.querySelector("#guessinput");
+        function checkanswer(){
+            if (parseInt(guess.value)==randomnumber){
+                document.querySelector("#demo").innerHTML="Great!";
+            }
+            else if (parseInt(guess.value)<randomnumber) {
+                document.querySelector("#demo").innerHTML="Small";
+            } else {
+                document.querySelector("#demo").innerHTML="Big";
+            }
+        }
+        var sum=0;
+        btnguess.addEventListener('click', checkanswer);
+        btnguess.addEventListener('click', document.getElementById("sum").innerHTML=sum+=1);
+    //previous guess, new game, only 5 guessing times (gameover)
+        
+    </script>
+</body>
+</html>
