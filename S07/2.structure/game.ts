@@ -13,16 +13,13 @@ class MyGame{
     public start(){ 
         
         this.players=[];
-        for (let i = 1; i < 10; i++) {
+        for (let i = 0; i < 10; i++) {
             var p=new RectComponent(0,100+i*50,30,30, "blue");
             p.dx=i*2;
             this.players.push(p);
         }
         
         window.setInterval(()=>{this.update()},20);
-
-        this.mainplayer=new RectComponent(0,0,10,10,"black");
-        
     }
     public update(){
         this.ctx.clearRect(0,0,this.board.width, this.board.height);
