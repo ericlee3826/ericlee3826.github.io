@@ -7,7 +7,7 @@ var game2;
         }
         MyGame.prototype.start = function () {
             var _this = this;
-            this.player = new RectComponent(100, 100, 30, 30, 3, "navy");
+            this.player = new RectComponent(100, 100, 30, 30, 3, 3, "navy");
             window.setInterval(function () { _this.update(); }, 20);
         };
         MyGame.prototype.update = function () {
@@ -18,19 +18,24 @@ var game2;
         return MyGame;
     }());
     var RectComponent = /** @class */ (function () {
-        function RectComponent(x, y, w, h, dx, color) {
+        function RectComponent(x, y, w, h, dx, dy, color) {
             this.x = x;
             this.y = y;
             this.w = w;
             this.h = h;
             this.dx = dx;
+            this.dy = dy;
             this.color = color;
         }
         RectComponent.prototype.update = function () {
-            if (this.x >= 780 || this.x <= 0) {
+            if (this.x >= 770 || this.x <= 0) {
                 this.dx *= -1;
             }
-            this.x += this.dx;
+            if (this.y >= 570 || this.y <= 0) {
+                this.dy *= -1;
+            }
+            this.x += this.dy;
+            this.y += this.dx;
         };
         RectComponent.prototype.draw = function (ctx) {
             ctx.fillStyle = this.color;
