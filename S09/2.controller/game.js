@@ -88,11 +88,14 @@ var game092;
                 this.zeroTouch = true;
                 for (var i = 0; i < this.players.length; i++) {
                     this.players[i].dy *= 1.5;
-                    this.rect.dx*=1.3;
-                    this.rect.dy*=1.3
                 }
                 this.level += 1;
                 document.querySelector("#level").innerHTML = this.level.toString();
+            }
+            if (this.level == 3) {
+                for (var i = 0; i < this.players.length; i++) {
+                    this.players[i].dx += 2;
+                }
             }
         };
         return Game;
@@ -133,6 +136,10 @@ var game092;
             if (this.y <= 0 || this.y >= 600) {
                 this.dy *= -1;
             }
+            if (this.x <= 0 || this.x >= 800) {
+                this.dx *= -1;
+            }
+            this.x += this.dx;
             this.y += this.dy;
         };
         RectPlayer.prototype.draw = function (ctx) {

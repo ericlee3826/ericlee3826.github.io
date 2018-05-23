@@ -24,7 +24,8 @@ namespace game092 {
             document.querySelector("#btnstop").addEventListener('click', this.stop);
             this.players=[];
             this.level=1;
-            for (let i = 0; i < 15; i++) {
+            document.querySelector("#level").innerHTML=this.level.toString();
+            for (let i = 0; i < 14; i++) {
                 this.players[i]=new RectPlayer(100+i*50,1,5,5,0,"navy",(i+1)*1.1);
                 
             }
@@ -53,7 +54,7 @@ namespace game092 {
             window.clearInterval(this.gameloop);
         }
         public update() {
-            this.ctx.clearRect(0, 0, 800, 600);
+            this.ctx.clearRect(0, 0, 850, 600);
             this.rect.update(this.keyCode);
             for (let i = 0; i < this.players.length; i++) {
                 this.players[i].update10();
@@ -107,9 +108,16 @@ namespace game092 {
                 for (let i = 0; i < this.players.length; i++) {
                     this.players[i].dy*=1.5;
                     
+                    
                 }
                 this.level+=1;
                 document.querySelector("#level").innerHTML=this.level.toString();
+            }
+            if (this.level==3){
+                for (let i = 0; i < this.players.length; i++) {
+                    this.players[i].dx+=2;
+                    
+                }
             }
 
         }
@@ -149,6 +157,10 @@ namespace game092 {
             if (this.y<=0||this.y>=600){
                 this.dy*=-1;
             }
+            if (this.x<=0||this.x>=800){
+                this.dx*=-1;
+            }
+            this.x+=this.dx;
             this.y+=this.dy;
         }
         public draw(ctx: CanvasRenderingContext2D) {
