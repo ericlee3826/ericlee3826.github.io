@@ -23,7 +23,7 @@ namespace game092 {
             document.querySelector("#btnstart").addEventListener('click', this.start);
             document.querySelector("#btnstop").addEventListener('click', this.stop);
             this.players=[];
-            this.level=0;
+            this.level=1;
             for (let i = 0; i < 15; i++) {
                 this.players[i]=new RectPlayer(100+i*50,1,5,5,0,"navy",(i+1)*1.1);
                 
