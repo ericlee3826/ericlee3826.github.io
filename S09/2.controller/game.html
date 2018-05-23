@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(185, 185, 185)">
+    <button id="btnstart" style="position: absolute; bottom: 1%; left: 46%">START</button>
+    <button id="btnstop" style="position: absolute; bottom: 1%; right: 46%">STOP</button>
+    <p id="result" style="font-size: 400%; position: absolute; right: 43%">Press Start</p>
+    <p style="font-size: 200%; position: absolute; top: 25%"><b>Instructions:</b></p>
+    <p style="position: absolute; top: 35%">The goal is to dodge the obstacles, <br></br>which  are symbolized by the small <br></br>navy squares. Dodge as many as <br></br>you can, and get to the end of the <br></br>box. This is educational because the <br></br>green square represents spacecraft,<br></br> and blue represents asteroids or <br></br>anything that can ruin spacetravel.</p>
+    <p style="font-size: 300%; position: absolute; right: 12%">Level:</p>
+    <p id="level" style="font-size: 300%; position: absolute; right: 9%">0</p>
+    <canvas id="board" height="600" width="800" style="border:1px solid; position: absolute; left: 20%; top: 7%"></canvas>
+    <script src="game.js"></script>
+</body>
+</html>
