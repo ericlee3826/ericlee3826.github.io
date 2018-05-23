@@ -14,8 +14,9 @@ var game092;
             document.querySelector("#btnstart").addEventListener('click', this.start);
             document.querySelector("#btnstop").addEventListener('click', this.stop);
             this.players = [];
-            this.level = 0;
-            for (var i = 0; i < 15; i++) {
+            this.level = 1;
+            document.querySelector("#level").innerHTML = this.level.toString();
+            for (var i = 0; i < 14; i++) {
                 this.players[i] = new RectPlayer(100 + i * 50, 1, 5, 5, 0, "navy", (i + 1) * 1.1);
             }
             window.addEventListener('keydown', this.handleKeyDown);
@@ -40,7 +41,7 @@ var game092;
             window.clearInterval(this.gameloop);
         };
         Game.prototype.update = function () {
-            this.ctx.clearRect(0, 0, 800, 600);
+            this.ctx.clearRect(0, 0, 850, 600);
             this.rect.update(this.keyCode);
             for (var i = 0; i < this.players.length; i++) {
                 this.players[i].update10();
@@ -87,6 +88,8 @@ var game092;
                 this.zeroTouch = true;
                 for (var i = 0; i < this.players.length; i++) {
                     this.players[i].dy *= 1.5;
+                    this.rect.dx*=1.3;
+                    this.rect.dy*=1.3
                 }
                 this.level += 1;
                 document.querySelector("#level").innerHTML = this.level.toString();
