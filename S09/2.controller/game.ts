@@ -115,7 +115,7 @@ namespace game092 {
             }
             if (this.level==3){
                 for (let i = 0; i < this.players.length; i++) {
-                    this.players[i].dx+=2;
+                    this.players[i].dx=this.players[i].dy;
                     
                 }
             }
