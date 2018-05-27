@@ -20,3 +20,4 @@ ctx.fillStyle = "white";
 ctx.arc(150, 50, 10, 0, 360);
 ctx.arc(350, 50, 10, 0, 360);
 ctx.fill();
+//# sourceMappingURL=test.js.map

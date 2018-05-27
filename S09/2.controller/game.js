@@ -94,7 +94,7 @@ var game092;
             }
             if (this.level == 3) {
                 for (var i = 0; i < this.players.length; i++) {
-                    this.players[i].dx += 2;
+                    this.players[i].dx = this.players[i].dy;
                 }
             }
         };
@@ -150,3 +150,4 @@ var game092;
     }());
     var game5 = new Game();
 })(game092 || (game092 = {}));
+//# sourceMappingURL=game.js.map

@@ -24,3 +24,4 @@ function update() {
         dx *= -1;
     }
 }
+//# sourceMappingURL=game.js.map

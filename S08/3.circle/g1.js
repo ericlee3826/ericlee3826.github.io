@@ -63,3 +63,4 @@ var circlegame1;
     var mgame = new Game();
     mgame.start();
 })(circlegame1 || (circlegame1 = {}));
+//# sourceMappingURL=g1.js.map

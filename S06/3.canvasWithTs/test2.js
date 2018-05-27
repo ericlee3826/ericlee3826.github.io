@@ -44,3 +44,4 @@ image.src = "cartoonface.jpg";
 image.onload = function () {
     ctx.drawImage(image, 550, 550);
 };
+//# sourceMappingURL=test2.js.map

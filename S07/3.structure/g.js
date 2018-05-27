@@ -45,3 +45,4 @@ var Rectangle = /** @class */ (function () {
 }());
 var g = new myGame();
 g.start();
+//# sourceMappingURL=g.js.map

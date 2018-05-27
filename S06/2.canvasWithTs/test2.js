@@ -25,3 +25,4 @@ smileImage.src = "smile.jpg";
 smileImage.onload = function () {
     ctx.drawImage(smileImage, 200, 200);
 };
+//# sourceMappingURL=test2.js.map

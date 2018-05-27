@@ -11,3 +11,4 @@ for (var i = 0; i < 5; i++) {
     ctx.arc(100 + i * 50, 100 + i * 50, 50, 0, Math.PI * 2);
 }
 ctx.fill();
+//# sourceMappingURL=test.js.map

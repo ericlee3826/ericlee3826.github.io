@@ -60,3 +60,4 @@ var rectGame;
     }());
     var game5 = new Game();
 })(rectGame || (rectGame = {}));
+//# sourceMappingURL=game.js.map

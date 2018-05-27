@@ -46,3 +46,4 @@ var game2;
     var game = new MyGame();
     game.start();
 })(game2 || (game2 = {}));
+//# sourceMappingURL=game.js.map
