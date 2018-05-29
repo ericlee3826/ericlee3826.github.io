@@ -4,7 +4,7 @@ var game092;
         function Game() {
             this.board = document.querySelector("#board");
             this.ctx = this.board.getContext("2d");
-            this.rect = new RectPlayer(40, 300, 10, 10, 0, "green", 0);
+            this.rect = new SpaceshipComponent(40, 300, 30, 30, 0, 0);
             this.update = this.update.bind(this);
             this.start = this.start.bind(this);
             this.stop = this.stop.bind(this);
@@ -15,12 +15,17 @@ var game092;
             document.querySelector("#btnstop").addEventListener('click', this.stop);
             this.players = [];
             this.level = 1;
+            this.handleKeyUp = this.handleKeyUp.bind(this);
             document.querySelector("#level").innerHTML = this.level.toString();
             for (var i = 0; i < 14; i++) {
                 this.players[i] = new RectPlayer(100 + i * 50, 1, 5, 5, 0, "navy", (i + 1) * 1.1);
             }
             window.addEventListener('keydown', this.handleKeyDown);
+            window.addEventListener('keyup', this.handleKeyUp);
         }
+        Game.prototype.handleKeyUp = function () {
+            this.keyCode = null;
+        };
         Game.prototype.handleKeyDown = function (ev) {
             this.keyCode = ev.keyCode;
             console.log(ev.keyCode);
@@ -147,6 +152,54 @@ var game092;
             ctx.fillRect(this.x, this.y, this.w, this.h);
         };
         return RectPlayer;
+    }());
+    var SpaceshipComponent = /** @class */ (function () {
+        function SpaceshipComponent(x, y, w, h, dy, dx) {
+            var _this = this;
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.dy = dy;
+            this.dx = dx;
+            var image = new Image(w, h);
+            image.src = "spaceship1.png";
+            image.addEventListener('load', function () { _this.loadedImage = image; });
+        }
+        SpaceshipComponent.prototype.update = function (keyCode) {
+            if (keyCode == 38) {
+                this.dy = -3;
+                this.dx = 0;
+            }
+            else if (keyCode == 40) {
+                this.dy = 3;
+                this.dx = 0;
+            }
+            else if (keyCode == 37) {
+                this.dx = -3;
+                this.dy = 0;
+            }
+            else if (keyCode == 39) {
+                this.dx = 3;
+                this.dy = 0;
+            }
+            else {
+                this.dy = 0;
+                this.dx = 0;
+            }
+            this.y += this.dy;
+            this.x += this.dx;
+        };
+        SpaceshipComponent.prototype.draw = function (ctx) {
+            if (this.loadedImage) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(Math.PI / 2);
+                ctx.drawImage(this.loadedImage, this.w / -2, this.h / -2, this.w, this.h);
+                ctx.restore();
+            }
+        };
+        return SpaceshipComponent;
     }());
     var game5 = new Game();
 })(game092 || (game092 = {}));

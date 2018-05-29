@@ -2,7 +2,7 @@ namespace game092 {
     class Game {
         board: HTMLCanvasElement;
         ctx: CanvasRenderingContext2D;
-        rect: RectPlayer;
+        rect: SpaceshipComponent;
         private gameloop: any;
         private isStarted: boolean;
         private keyCode: number;
@@ -13,7 +13,7 @@ namespace game092 {
         constructor() {
             this.board = document.querySelector("#board");
             this.ctx = this.board.getContext("2d");
-            this.rect = new RectPlayer(40, 300, 10, 10, 0, "green", 0);
+            this.rect = new SpaceshipComponent(40, 300, 30, 30, 0, 0);
             this.update = this.update.bind(this);
             this.start=this.start.bind(this);
             this.stop=this.stop.bind(this);
@@ -24,6 +24,7 @@ namespace game092 {
             document.querySelector("#btnstop").addEventListener('click', this.stop);
             this.players=[];
             this.level=1;
+            this.handleKeyUp=this.handleKeyUp.bind(this);
             document.querySelector("#level").innerHTML=this.level.toString();
             for (let i = 0; i < 14; i++) {
                 this.players[i]=new RectPlayer(100+i*50,1,5,5,0,"navy",(i+1)*1.1);
@@ -31,7 +32,11 @@ namespace game092 {
             }
 
             window.addEventListener('keydown', this.handleKeyDown);
+            window.addEventListener('keyup', this.handleKeyUp);
 
+        }
+        public handleKeyUp(){
+            this.keyCode=null;
         }
         public handleKeyDown(ev: KeyboardEvent){
             this.keyCode=ev.keyCode;
@@ -163,11 +168,56 @@ namespace game092 {
             this.x+=this.dx;
             this.y+=this.dy;
         }
-        public draw(ctx: CanvasRenderingContext2D) {
-            ctx.fillStyle = this.color;
-            ctx.fillRect(this.x, this.y, this.w, this.h);
+        public draw(ctx: CanvasRenderingContext2D){
+            ctx.fillStyle=this.color;
+            ctx.fillRect(this.x,this.y,this.w,this.h);
         }
     }
+
+    class SpaceshipComponent {
+        private loadedImage: HTMLImageElement;
+        constructor(public x, public y, public w, public h, public dy, public dx) {
+            var image = new Image(w, h);
+            image.src = "spaceship1.png";
+            image.addEventListener('load', () => { this.loadedImage = image });
+
+        }
+        public update(keyCode: number) {
+            if (keyCode == 38) {
+                this.dy = -3;
+                this.dx=0;
+            }
+            else if (keyCode == 40) {
+                this.dy = 3;
+                this.dx=0;
+            }
+            else if(keyCode==37){
+                this.dx=-3;
+                this.dy=0;
+            }
+            else if (keyCode==39){
+                this.dx=3;
+                this.dy=0;
+            }
+            else {
+                this.dy = 0;
+                this.dx=0;
+            }
+            this.y += this.dy;
+            this.x+=this.dx;
+
+        }
+        public draw(ctx: CanvasRenderingContext2D) {
+            if (this.loadedImage) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(Math.PI / 2);
+                ctx.drawImage(this.loadedImage, this.w / -2, this.h / -2, this.w, this.h);
+                ctx.restore();
+            }
+        }
+    }
+    
 
     var game5 = new Game();
 
