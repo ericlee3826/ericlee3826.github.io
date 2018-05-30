@@ -89,15 +89,15 @@ var game092;
                 }
                 document.querySelector("#level").innerHTML = this.level.toString();
             }
-            // if ((this.rect.x<=0)&& this.zeroTouch==false){
-            //     this.eightTouch=false;
-            //     this.zeroTouch=true;
-            //     for (let i = 0; i < this.players.length; i++) {
-            //         this.players[i].dy*=1.5;
-            //     }
-            //     this.level+=1;
-            //     document.querySelector("#level").innerHTML=this.level.toString();
-            // }
+            if ((this.rect.x<=0)&& this.zeroTouch==false){
+                this.eightTouch=false;
+                this.zeroTouch=true;
+                for (let i = 0; i < this.players.length; i++) {
+                    this.players[i].dy*=1.5;
+                }
+                this.level+=1;
+                document.querySelector("#level").innerHTML=this.level.toString();
+            }
             if (this.level == 3) {
                 for (var i = 0; i < this.players.length; i++) {
                     this.players[i].dx = this.players[i].dy;
