@@ -6,7 +6,7 @@ namespace game092 {
         private gameloop: any;
         private isStarted: boolean;
         private keyCode: number;
-        public players: RectPlayer[];
+        public players: AsteroidComponent[];
         private eightTouch: boolean;
         private zeroTouch: boolean;
         private level: number;
@@ -27,7 +27,7 @@ namespace game092 {
             this.handleKeyUp=this.handleKeyUp.bind(this);
             document.querySelector("#level").innerHTML=this.level.toString();
             for (let i = 0; i < 14; i++) {
-                this.players[i]=new RectPlayer(100+i*50,1,5,5,0,"navy",(i+1)*1.1);
+                this.players[i]=new AsteroidComponent(100+i*50,1,15,15,(i+1)*1.1,0);
                 
             }
 
@@ -97,27 +97,29 @@ namespace game092 {
                 
             }
 
-            if ((this.rect.x+10>=800)&& this.eightTouch==false){
+            if ((this.rect.x+10>=800)){
                 this.eightTouch=true;
                 this.zeroTouch=false;
-                for (let i = 0; i < this.players.length; i++) {
-                    this.players[i].dy*=1.5;
-                    
-                }
+                this.rect.x=40;
                 this.level+=1;
-                document.querySelector("#level").innerHTML=this.level.toString();
-            }
-            if ((this.rect.x<=0)&& this.zeroTouch==false){
-                this.eightTouch=false;
-                this.zeroTouch=true;
                 for (let i = 0; i < this.players.length; i++) {
-                    this.players[i].dy*=1.5;
+                    this.players[i].dy*=1.7;
                     
                     
                 }
-                this.level+=1;
                 document.querySelector("#level").innerHTML=this.level.toString();
             }
+            // if ((this.rect.x<=0)&& this.zeroTouch==false){
+            //     this.eightTouch=false;
+            //     this.zeroTouch=true;
+            //     for (let i = 0; i < this.players.length; i++) {
+            //         this.players[i].dy*=1.5;
+                    
+                    
+            //     }
+            //     this.level+=1;
+            //     document.querySelector("#level").innerHTML=this.level.toString();
+            // }
             if (this.level==3){
                 for (let i = 0; i < this.players.length; i++) {
                     this.players[i].dx=this.players[i].dy;
@@ -217,6 +219,37 @@ namespace game092 {
             }
         }
     }
+    class AsteroidComponent {
+        private loadedImage: HTMLImageElement;
+        constructor(public x, public y, public w, public h, public dy, public dx) {
+            var image = new Image(w, h);
+            image.src = "asteroid.png";
+            image.addEventListener('load', () => { this.loadedImage = image });
+
+        }
+        public update10(){
+            if (this.y<=0||this.y>=600){
+                this.dy*=-1;
+            }
+            if (this.x<=0||this.x>=800){
+                this.dx*=-1;
+            }
+            this.x+=this.dx;
+            this.y+=this.dy;
+        }
+        
+        public draw(ctx: CanvasRenderingContext2D) {
+            if (this.loadedImage) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(Math.PI / 2);
+                ctx.drawImage(this.loadedImage, this.w / -2, this.h / -2, this.w, this.h);
+                ctx.restore();
+            }
+        }
+        
+    }
+
     
 
     var game5 = new Game();

@@ -132,6 +132,7 @@ namespace rectGame {
                 ctx.restore();
             }
         }
+        
     }
 
     var game5 = new Game();

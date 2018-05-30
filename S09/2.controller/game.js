@@ -18,7 +18,7 @@ var game092;
             this.handleKeyUp = this.handleKeyUp.bind(this);
             document.querySelector("#level").innerHTML = this.level.toString();
             for (var i = 0; i < 14; i++) {
-                this.players[i] = new RectPlayer(100 + i * 50, 1, 5, 5, 0, "navy", (i + 1) * 1.1);
+                this.players[i] = new AsteroidComponent(100 + i * 50, 1, 15, 15, (i + 1) * 1.1, 0);
             }
             window.addEventListener('keydown', this.handleKeyDown);
             window.addEventListener('keyup', this.handleKeyUp);
@@ -79,24 +79,25 @@ var game092;
                     }
                 }
             }
-            if ((this.rect.x + 10 >= 800) && this.eightTouch == false) {
+            if ((this.rect.x + 10 >= 800)) {
                 this.eightTouch = true;
                 this.zeroTouch = false;
-                for (var i = 0; i < this.players.length; i++) {
-                    this.players[i].dy *= 1.5;
-                }
+                this.rect.x = 40;
                 this.level += 1;
+                for (var i = 0; i < this.players.length; i++) {
+                    this.players[i].dy *= 1.7;
+                }
                 document.querySelector("#level").innerHTML = this.level.toString();
             }
-            if ((this.rect.x <= 0) && this.zeroTouch == false) {
-                this.eightTouch = false;
-                this.zeroTouch = true;
-                for (var i = 0; i < this.players.length; i++) {
-                    this.players[i].dy *= 1.5;
-                }
-                this.level += 1;
-                document.querySelector("#level").innerHTML = this.level.toString();
-            }
+            // if ((this.rect.x<=0)&& this.zeroTouch==false){
+            //     this.eightTouch=false;
+            //     this.zeroTouch=true;
+            //     for (let i = 0; i < this.players.length; i++) {
+            //         this.players[i].dy*=1.5;
+            //     }
+            //     this.level+=1;
+            //     document.querySelector("#level").innerHTML=this.level.toString();
+            // }
             if (this.level == 3) {
                 for (var i = 0; i < this.players.length; i++) {
                     this.players[i].dx = this.players[i].dy;
@@ -200,6 +201,40 @@ var game092;
             }
         };
         return SpaceshipComponent;
+    }());
+    var AsteroidComponent = /** @class */ (function () {
+        function AsteroidComponent(x, y, w, h, dy, dx) {
+            var _this = this;
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.dy = dy;
+            this.dx = dx;
+            var image = new Image(w, h);
+            image.src = "asteroid.png";
+            image.addEventListener('load', function () { _this.loadedImage = image; });
+        }
+        AsteroidComponent.prototype.update10 = function () {
+            if (this.y <= 0 || this.y >= 600) {
+                this.dy *= -1;
+            }
+            if (this.x <= 0 || this.x >= 800) {
+                this.dx *= -1;
+            }
+            this.x += this.dx;
+            this.y += this.dy;
+        };
+        AsteroidComponent.prototype.draw = function (ctx) {
+            if (this.loadedImage) {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(Math.PI / 2);
+                ctx.drawImage(this.loadedImage, this.w / -2, this.h / -2, this.w, this.h);
+                ctx.restore();
+            }
+        };
+        return AsteroidComponent;
     }());
     var game5 = new Game();
 })(game092 || (game092 = {}));
